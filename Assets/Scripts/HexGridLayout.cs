@@ -2,20 +2,68 @@ using UnityEngine;
 
 public class HexGridLayout : MonoBehaviour
 {
-    [Header("Grid Settings")] public int gridSize;
+    [Header("Grid Settings")] 
+    public int gridSize;
 
-    [Header("Tile Settings")] public float outerSize = 1f;
+    [Header("Tile Settings")] 
+    public float outerSize = 1f;
     public float innerSize = 0f;
     public float tileHeight = 1f;
     public Material material;
+
+    private GameObject[,] _tiles;
+    private Camera _currentCamera;
+    private Vector2Int _currentHover = -Vector2Int.one;
 
     private void OnEnable()
     {
         LayoutGrid();
     }
 
+    private void Update()
+    {
+        if (!_currentCamera)
+        {
+            _currentCamera = Camera.main;
+            return;
+        }
+
+        RaycastHit info;
+        var ray = _currentCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out info, 100, LayerMask.GetMask("Tile", "Hover")))
+        {
+            var hitPosition = LookupTileIndex(info.transform.gameObject);
+
+            // Initial hover
+            if (_currentHover == -Vector2Int.one)
+            {
+                _currentHover = hitPosition;
+                _tiles[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
+                
+            }
+
+            // Hover and change previous
+            if (_currentHover != hitPosition)
+            {
+                _tiles[_currentHover.x, _currentHover.y].layer = LayerMask.NameToLayer("Tile");
+                _currentHover = hitPosition;
+                _tiles[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
+            }
+        }
+        else
+        {
+            if (_currentHover != -Vector2Int.one)
+            {
+                _tiles[_currentHover.x, _currentHover.y].layer = LayerMask.NameToLayer("Tile");
+                _currentHover = -Vector2Int.one;
+            }
+        }
+    }
+
     private void LayoutGrid()
     {
+        _tiles = new GameObject[gridSize, gridSize];
+        
         var offset = gridSize / 2 - 1;
 
         for (var y = 0; y < gridSize; y++)
@@ -42,7 +90,10 @@ public class HexGridLayout : MonoBehaviour
                 hexRenderer.SetMaterial(material);
                 hexRenderer.DrawMesh();
 
+                tile.layer = LayerMask.NameToLayer("Tile");
+                tile.AddComponent<MeshCollider>();
                 tile.transform.parent = transform;
+                _tiles[x, y] = tile;
             }
         }
     }
@@ -68,5 +119,21 @@ public class HexGridLayout : MonoBehaviour
         var yPosition = -row * verticalDistance;
 
         return new Vector3(xPosition, 0, yPosition);
+    }
+
+    private Vector2Int LookupTileIndex(GameObject hitInfo)
+    {
+        for (int x = 0; x < gridSize; x++)
+        {
+            for (int y = 0; y < gridSize; y++)
+            {
+                if (_tiles[x, y] == hitInfo)
+                {
+                    return new Vector2Int(x, y);
+                }
+            }
+        }
+
+        return -Vector2Int.one;
     }
 }
