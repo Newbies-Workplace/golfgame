@@ -1,5 +1,4 @@
-﻿using System;
-using Board;
+﻿using Board;
 using UnityEngine;
 
 namespace Battle
@@ -26,6 +25,11 @@ namespace Battle
                 StartCoroutine(State.Move(pos));
             };
 
+        }
+
+        public static void OnCardClick(string cardName)
+        {
+            Debug.Log($"onClick Card: {cardName}");
         }
     }
 }
