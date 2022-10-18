@@ -18,6 +18,8 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         gameObject.GetComponent<Button>().onClick.AddListener(() =>
         {
             BattleSystem.OnCardClick(card.name);
+            
+            Destroy(gameObject);
         });
     }
 
