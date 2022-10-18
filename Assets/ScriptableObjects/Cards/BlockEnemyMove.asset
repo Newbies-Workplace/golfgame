@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BlockEnemyMove
   m_EditorClassIdentifier: 
   name: Block Enemy Move
-  energyCost: 0
+  energyCost: 4
