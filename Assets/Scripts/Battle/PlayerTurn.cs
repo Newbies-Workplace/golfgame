@@ -11,16 +11,18 @@ namespace Battle
 
         public override IEnumerator Move(Vector2Int coordinates)
         {
-            BattleSystem.Player.transform.position =
-                BattleSystem.Board.GetPositionForTileEntityFromCoordinate(coordinates);
-
-            BattleSystem.SetState(new EnemyTurn(BattleSystem));
-            yield break;
+            if (!battleSystem.Board.CanMoveOnTile(coordinates)) yield break;
+            
+            battleSystem.Player.transform.SetParent(battleSystem.Board.GetTileTransform(coordinates));
+            battleSystem.Player.transform.position =
+                battleSystem.Board.GetPositionForTileEntityFromCoordinate(coordinates);
+                
+            battleSystem.SetState(new EnemyTurn(battleSystem));
         }
 
         public override IEnumerator UseCard(Card card)
         {
-            Debug.Log($"PLayerTurn: Use Card: {card.name}");
+            Debug.Log($"PlayerTurn: Use Card: {card.name}");
             return base.UseCard(card);
         }
     }

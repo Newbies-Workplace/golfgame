@@ -11,15 +11,14 @@ namespace Battle
 
         public override IEnumerator Start()
         {
-            yield return BattleSystem.CardManager.GenerateStarterDeck();
-            
-            BattleSystem.Player.transform.position =
-                BattleSystem.Board.GetPositionForTileEntityFromCoordinate(new Vector2Int(3, 0));
+            battleSystem.Player.transform.position =
+                battleSystem.Board.GetPositionForTileEntityFromCoordinate(new Vector2Int(3, 0));
+            battleSystem.Enemy.transform.position =
+                battleSystem.Board.GetPositionForTileEntityFromCoordinate(new Vector2Int(3, 6));
 
-            BattleSystem.Enemy.transform.position =
-                BattleSystem.Board.GetPositionForTileEntityFromCoordinate(new Vector2Int(3, 6));
+            yield return battleSystem.CardManager.GenerateStarterDeck();
 
-            BattleSystem.SetState(new PlayerTurn(BattleSystem));
+            battleSystem.SetState(new PlayerTurn(battleSystem));
         }
     }
 }

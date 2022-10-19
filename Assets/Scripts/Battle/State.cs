@@ -5,11 +5,11 @@ namespace Battle
 {
     public abstract class State
     {
-        protected BattleSystem BattleSystem;
+        protected readonly BattleSystem battleSystem;
 
-        public State(BattleSystem battleSystem)
+        protected State(BattleSystem battleSystem)
         {
-            BattleSystem = battleSystem;
+            this.battleSystem = battleSystem;
         }
         
         public virtual IEnumerator Start()

@@ -1,5 +1,4 @@
 using System;
-using Battle;
 using UnityEngine;
 
 namespace Board
@@ -67,6 +66,41 @@ namespace Board
                 }
             }
         }
+        
+        public Vector3 GetPositionForTileEntityFromCoordinate(Vector2Int coordinate)
+        {
+            var pos = GetPositionForHexFromCoordinate(coordinate);
+
+            pos.y = 1;
+
+            return pos;
+        }
+        
+        private Vector2Int LookupTileIndex(HexTileRenderer hitInfo)
+        {
+            for (int x = 0; x < gridSize; x++)
+            {
+                for (int y = 0; y < gridSize; y++)
+                {
+                    if (_tiles[x, y] == hitInfo)
+                    {
+                        return new Vector2Int(x, y);
+                    }
+                }
+            }
+
+            return -Vector2Int.one;
+        }
+
+        public Transform GetTileTransform(Vector2Int coordinates)
+        {
+            return _tiles[coordinates.x, coordinates.y].transform;
+        }
+
+        public bool CanMoveOnTile(Vector2Int coordinates)
+        {
+            return _tiles[coordinates.x, coordinates.y].transform.childCount == 0;
+        }
 
         private void LayoutGrid()
         {
@@ -113,31 +147,6 @@ namespace Board
             var yPosition = -row * verticalDistance;
 
             return new Vector3(xPosition, 0, yPosition);
-        }
-
-        public Vector3 GetPositionForTileEntityFromCoordinate(Vector2Int coordinate)
-        {
-            var pos = GetPositionForHexFromCoordinate(coordinate);
-
-            pos.y = 1;
-
-            return pos;
-        }
-        
-        private Vector2Int LookupTileIndex(HexTileRenderer hitInfo)
-        {
-            for (int x = 0; x < gridSize; x++)
-            {
-                for (int y = 0; y < gridSize; y++)
-                {
-                    if (_tiles[x, y] == hitInfo)
-                    {
-                        return new Vector2Int(x, y);
-                    }
-                }
-            }
-
-            return -Vector2Int.one;
         }
     }
 }

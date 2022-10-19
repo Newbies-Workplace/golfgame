@@ -26,12 +26,10 @@ namespace Battle
             {
                 StartCoroutine(State.Move(pos));
             };
-
-        }
-
-        public void OnUseCard(Card card)
-        {
-            StartCoroutine(State.UseCard(card));
+            cardManager.OnCardPress += card =>
+            {
+                StartCoroutine(State.UseCard(card));
+            };
         }
     }
 }
