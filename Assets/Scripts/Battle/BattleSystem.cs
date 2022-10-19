@@ -1,5 +1,4 @@
-﻿using System;
-using Board;
+﻿using Board;
 using UnityEngine;
 
 namespace Battle
@@ -9,11 +8,13 @@ namespace Battle
         [SerializeField] private Fighter player;
         [SerializeField] private Fighter enemy;
         [SerializeField] private HexBoard hexBoard;
+        [SerializeField] private CardManager cardManager;
         
         public Fighter Player => player;
         public Fighter Enemy => enemy;
         public HexBoard Board => hexBoard;
-        
+        public CardManager CardManager => cardManager;
+
         private void Start()
         {
             SetState(new Begin(this));
@@ -26,6 +27,11 @@ namespace Battle
                 StartCoroutine(State.Move(pos));
             };
 
+        }
+
+        public void OnUseCard(Card card)
+        {
+            StartCoroutine(State.UseCard(card));
         }
     }
 }

@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 6183583508945990588}
   - component: {fileID: 6183583508945990589}
   m_Layer: 5
-  m_Name: GrenadeThrowCardPrefab
+  m_Name: DeployMIne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -360,6 +360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014b5f6852397e447b28787138fefcc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 11400000, guid: 2573b4d95a9e71c42a1d6289de3c5136, type: 2}
+  card: {fileID: 11400000, guid: 23230bf05d5f1d74b80ecf6244d53a98, type: 2}
   name: {fileID: 6183583508407046968}
   energyCost: {fileID: 6183583508487480094}

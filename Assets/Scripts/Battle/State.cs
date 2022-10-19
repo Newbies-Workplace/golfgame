@@ -20,6 +20,11 @@ namespace Battle
         public virtual IEnumerator Move(Vector2Int coordinates)
         {
             yield break;
+        }  
+        
+        public virtual IEnumerator UseCard(Card card)
+        {
+            yield break;
         }
     }
 }
