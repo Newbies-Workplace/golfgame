@@ -155,6 +155,7 @@ MonoBehaviour:
   player: {fileID: 1074354740}
   enemy: {fileID: 805590194}
   hexBoard: {fileID: 1207553094}
+  cardManager: {fileID: 1644504514}
 --- !u!4 &74709418
 Transform:
   m_ObjectHideFlags: 0
@@ -168,7 +169,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &96424679
 GameObject:
@@ -199,7 +200,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &695395030
 PrefabInstance:
@@ -218,7 +219,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 00d85596b1d5c9e49a6fdb500abb295c, type: 2}
     - target: {fileID: 4585009880060995318, guid: 42eb09ddde148e74fb64eef7e8347533, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4585009880060995318, guid: 42eb09ddde148e74fb64eef7e8347533, type: 3}
       propertyPath: m_LocalPosition.x
@@ -444,7 +445,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -470,7 +471,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 7, y: 8, z: -10}
+  m_LocalPosition: {x: 7, y: 7, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -643,12 +644,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022594679}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -960, y: -540, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1496426695}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1074354740 stripped
 MonoBehaviour:
@@ -738,7 +739,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1496426691
 GameObject:
@@ -833,9 +834,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 972341649}
-  - {fileID: 1022594682}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -859,7 +859,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6e490e0c98787dd46a72ffccc2aea2e1, type: 2}
     - target: {fileID: 4585009880060995318, guid: 42eb09ddde148e74fb64eef7e8347533, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4585009880060995318, guid: 42eb09ddde148e74fb64eef7e8347533, type: 3}
       propertyPath: m_LocalPosition.x
@@ -937,11 +937,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefabs:
+  - {fileID: 6183583508945990587, guid: 0e2a87f0f21f43247b1ca9437a715ca7, type: 3}
+  - {fileID: 6183583508945990587, guid: 66b1b869f55a85349a3a3beb57babda1, type: 3}
   - {fileID: 6183583508945990587, guid: 738e4d0ee0cb0954889cef05440af9c8, type: 3}
   - {fileID: 6183583508945990587, guid: f9a1d12c5d7658e4084c60c50d7cc5d1, type: 3}
-  - {fileID: 6183583508945990587, guid: 66b1b869f55a85349a3a3beb57babda1, type: 3}
   - {fileID: 6183583508945990587, guid: ccb64d01214193f46aa91d35e4005798, type: 3}
-  - {fileID: 6183583508945990587, guid: 0e2a87f0f21f43247b1ca9437a715ca7, type: 3}
   numberOfCards: 6
 --- !u!4 &1644504515
 Transform:

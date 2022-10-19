@@ -17,5 +17,11 @@ namespace Battle
             BattleSystem.SetState(new EnemyTurn(BattleSystem));
             yield break;
         }
+
+        public override IEnumerator UseCard(Card card)
+        {
+            Debug.Log($"PLayerTurn: Use Card: {card.name}");
+            return base.UseCard(card);
+        }
     }
 }

@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardGenerator : MonoBehaviour
+public class CardManager : MonoBehaviour
 {
     public List<GameObject> cardPrefabs;
     public int numberOfCards = 5;
-
-    private void Start()
-    {
-        StartCoroutine(GenerateStarterDeck());
-    }
-
-    private IEnumerator GenerateStarterDeck()
+    
+    public IEnumerator GenerateStarterDeck()
     {
         yield return new WaitForSeconds(.5f);
         for (var i = 0; i < numberOfCards; i++)

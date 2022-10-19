@@ -8,11 +8,13 @@ namespace Battle
         [SerializeField] private Fighter player;
         [SerializeField] private Fighter enemy;
         [SerializeField] private HexBoard hexBoard;
+        [SerializeField] private CardManager cardManager;
         
         public Fighter Player => player;
         public Fighter Enemy => enemy;
         public HexBoard Board => hexBoard;
-        
+        public CardManager CardManager => cardManager;
+
         private void Start()
         {
             SetState(new Begin(this));
@@ -27,9 +29,9 @@ namespace Battle
 
         }
 
-        public static void OnCardClick(string cardName)
+        public void OnUseCard(Card card)
         {
-            Debug.Log($"onClick Card: {cardName}");
+            StartCoroutine(State.UseCard(card));
         }
     }
 }
