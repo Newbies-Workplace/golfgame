@@ -200,7 +200,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &695395030
 PrefabInstance:
@@ -649,7 +649,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1074354740 stripped
 MonoBehaviour:
@@ -835,7 +835,7 @@ RectTransform:
   m_Children:
   - {fileID: 972341649}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -936,6 +936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4223393fc8df604794c99b6403aac5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardList: {fileID: 972341649}
   cardPrefabs:
   - {fileID: 6183583508945990587, guid: 0e2a87f0f21f43247b1ca9437a715ca7, type: 3}
   - {fileID: 6183583508945990587, guid: 66b1b869f55a85349a3a3beb57babda1, type: 3}
@@ -956,5 +957,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
