@@ -27,7 +27,14 @@ namespace Board
         private MeshRenderer _meshRenderer;
         private MeshCollider _meshCollider;
         private List<Face> _faces;
-    
+
+        private bool _isHighlighted;
+        private bool _isAvailable;
+        
+        [SerializeField] private Material defaultMaterial;
+        [SerializeField] private Material highlightMaterial;
+        [SerializeField] private Material availableMaterial;
+
         public float height;
         public float innerSize;
         public float outerSize;
@@ -36,7 +43,7 @@ namespace Board
         {
             _meshFilter = GetComponent<MeshFilter>();
             _meshRenderer = GetComponent<MeshRenderer>();
-            _meshCollider = GetComponent <MeshCollider>();
+            _meshCollider = GetComponent<MeshCollider>();
 
             _mesh = new Mesh
             {
@@ -52,8 +59,25 @@ namespace Board
             DrawMesh();
         }
 
-        public void SetMaterial(Material material)
+        public void SetIsHighlighted(bool isHighlighted)
         {
+            _isHighlighted = isHighlighted;
+            UpdateMaterial();
+        }
+        
+        private void UpdateMaterial()
+        {
+            var material = defaultMaterial;
+            
+            if (_isHighlighted)
+            {
+                material = highlightMaterial;
+            }
+            else if (_isAvailable)
+            {
+                material = availableMaterial;
+            }
+                
             _meshRenderer.material = material;
         }
 

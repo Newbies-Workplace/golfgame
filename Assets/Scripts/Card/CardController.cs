@@ -7,14 +7,14 @@ using UnityEngine.UI;
 public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Card card;
-    public TMP_Text name;
+    public TMP_Text cardName;
     public TMP_Text energyCost;
 
     public event Action OnCardPress;
 
     public void Start()
     {
-        name.text = card.name;
+        cardName.text = card.cardName;
         energyCost.text = card.energyCost.ToString();
         gameObject.AddComponent(typeof(Button));
         gameObject.GetComponent<Button>().onClick.AddListener(() =>

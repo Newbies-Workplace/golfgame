@@ -361,5 +361,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 11400000, guid: 2573b4d95a9e71c42a1d6289de3c5136, type: 2}
-  name: {fileID: 6183583508407046968}
+  cardName: {fileID: 6183583508407046968}
   energyCost: {fileID: 6183583508487480094}

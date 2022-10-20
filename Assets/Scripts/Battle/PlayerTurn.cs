@@ -22,7 +22,7 @@ namespace Battle
 
         public override IEnumerator UseCard(Card card)
         {
-            Debug.Log($"PlayerTurn: Use Card: {card.name}");
+            Debug.Log($"PlayerTurn: Use Card: {card.cardName}");
             return base.UseCard(card);
         }
     }

@@ -97,6 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23161dff41dd496c9e36eefeaf672a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMaterial: {fileID: 2100000, guid: 2dcf06b2b84c76041866a426cfd80f66, type: 2}
+  highlightMaterial: {fileID: 2100000, guid: 92679fc7483c30f4a9a923acc21c1059, type: 2}
+  availableMaterial: {fileID: 2100000, guid: 36a2c3051893ca14c845a36bdd9ee5c6, type: 2}
   height: 1
   innerSize: 0
   outerSize: 1

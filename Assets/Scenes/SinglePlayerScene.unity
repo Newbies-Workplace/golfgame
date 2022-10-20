@@ -724,8 +724,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSize: 7
   hexTileRenderer: {fileID: 4812659467796908003, guid: 4f6c2dd18964c4748b9c753736d48657, type: 3}
-  defaultMaterial: {fileID: 2100000, guid: 2dcf06b2b84c76041866a426cfd80f66, type: 2}
-  highlightMaterial: {fileID: 2100000, guid: 92679fc7483c30f4a9a923acc21c1059, type: 2}
 --- !u!4 &1207553095
 Transform:
   m_ObjectHideFlags: 0
