@@ -24,12 +24,12 @@ namespace Board
             return hex + AxialDirection(direction);
         }
 
-        public static Vector2Int[] GetReachableHexes(Vector2Int start, Func<Vector2Int, bool> isBlockChecker, int range)
+        public static Vector2Int[] GetReachableHexes(Vector2Int start, int range, Func<Vector2Int, bool> isBlockChecker)
         {
             var visited = new HashSet<Vector2Int> { start };
             var fringes = new List<List<Vector2Int>> { new() {start} };
 
-            for (var k = 2; k <= range; k++)
+            for (var k = 1; k <= range; k++)
             {
                 fringes.Add(new List<Vector2Int>());
                 foreach (var hex in fringes[k-1])

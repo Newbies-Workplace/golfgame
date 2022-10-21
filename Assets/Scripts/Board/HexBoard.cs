@@ -97,40 +97,36 @@ namespace Board
 
         public bool CanMoveOnTile(Vector2Int coordinates)
         {
-            return _tiles[coordinates.x, coordinates.y].transform.childCount == 0;
+            try //todo check instead of try
+            {
+                return _tiles[coordinates.x, coordinates.y].transform.childCount == 0;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
         
         //https://www.redblobgames.com/grids/hexagons/#range
         public void HighlightAvailableMoves(Fighter player)
         {
-            var tilesWithinRange = new List<HexTileRenderer>();
-            var N = player.range;
+            var tilesWithinRange = HexAlgorithms.GetReachableHexes(
+                player.coordinates,
+                player.range,
+                pos => !CanMoveOnTile(pos)
+            );
 
-            foreach (var q in (-N).To(N))
+            foreach (var coordinate in tilesWithinRange)
             {
-                foreach (var r in Mathf.Max(-N, -q-N).To(Mathf.Min(N, -q+N)))
+                try //todo check instead of try
                 {
-                    var coordinates = new Vector2Int(player.coordinates.x + q, player.coordinates.y + r);
-
-                    try
-                    {
-                        var tile = _tiles[coordinates.x, coordinates.y];
-
-                        if (tile is not null && CanMoveOnTile(coordinates))
-                        {
-                            tilesWithinRange.Add(tile); 
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                    }
+                    _tiles[coordinate.x, coordinate.y].SetIsAvailable(true);
                 }
-            }
-            
-            foreach (var tileRenderer in tilesWithinRange)
-            {
-                tileRenderer.SetIsAvailable(true);
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
         }
 
