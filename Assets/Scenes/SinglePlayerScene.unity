@@ -861,7 +861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 914704173997277437, guid: 42eb09ddde148e74fb64eef7e8347533, type: 3}
       propertyPath: range
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 914704173997277437, guid: 42eb09ddde148e74fb64eef7e8347533, type: 3}
       propertyPath: material
