@@ -13,6 +13,7 @@ namespace Battle
         {
             if (!battleSystem.Board.CanMoveOnTile(coordinates)) yield break;
             
+            battleSystem.Enemy.coordinates = coordinates;
             battleSystem.Enemy.transform.SetParent(battleSystem.Board.GetTileTransform(coordinates));
             battleSystem.Enemy.transform.position =
                 battleSystem.Board.GetPositionForTileEntityFromCoordinate(coordinates);

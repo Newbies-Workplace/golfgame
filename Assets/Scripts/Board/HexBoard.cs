@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Board
@@ -98,26 +99,71 @@ namespace Board
         {
             return _tiles[coordinates.x, coordinates.y].transform.childCount == 0;
         }
+        
+        //https://www.redblobgames.com/grids/hexagons/#range
+        public void HighlightAvailableMoves(Fighter player)
+        {
+            var tilesWithinRange = new List<HexTileRenderer>();
+            var N = player.range;
 
+            foreach (var q in (-N).To(N))
+            {
+                foreach (var r in Mathf.Max(-N, -q-N).To(Mathf.Min(N, -q+N)))
+                {
+                    var coordinates = new Vector2Int(player.coordinates.x + q, player.coordinates.y + r);
+
+                    try
+                    {
+                        var tile = _tiles[coordinates.x, coordinates.y];
+
+                        if (tile is not null && CanMoveOnTile(coordinates))
+                        {
+                            tilesWithinRange.Add(tile); 
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                }
+            }
+            
+            foreach (var tileRenderer in tilesWithinRange)
+            {
+                tileRenderer.SetIsAvailable(true);
+            }
+        }
+
+        public void ClearAvailableMovesHighlight()
+        {
+            foreach (var tile in _tiles)
+            {
+                if (tile != null)
+                {
+                    tile.SetIsAvailable(false);
+                }
+            }
+        }
+        
         private void LayoutGrid()
         {
             _tiles = new HexTileRenderer[gridSize, gridSize];
         
             var offset = gridSize / 2 - 1;
 
-            for (var y = 0; y < gridSize; y++)
+            for (var r = 0; r < gridSize; r++)
             {
-                for (var x = 0; x < gridSize; x++)
+                for (var q = 0; q < gridSize; q++)
                 {
-                    if (x + y <= offset || x + y > gridSize + offset)
+                    if (q + r <= offset || q + r > gridSize + offset)
                     {
                         continue;
                     }
 
-                    var tile = Instantiate(hexTileRenderer, GetPositionForHexFromCoordinate(new Vector2Int(x, y)), Quaternion.identity);
-                    tile.name = $"Tile {x}, {y}";
+                    var tile = Instantiate(hexTileRenderer, GetPositionForHexFromCoordinate(new Vector2Int(q, r)), Quaternion.identity);
+                    tile.name = $"Tile {q}, {r}";
                     tile.transform.parent = transform;
-                    _tiles[x, y] = tile;
+                    _tiles[q, r] = tile;
                 }
             }
         }

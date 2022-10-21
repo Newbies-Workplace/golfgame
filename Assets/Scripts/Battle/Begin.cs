@@ -12,9 +12,9 @@ namespace Battle
         public override IEnumerator Start()
         {
             battleSystem.Player.transform.position =
-                battleSystem.Board.GetPositionForTileEntityFromCoordinate(new Vector2Int(3, 0));
+                battleSystem.Board.GetPositionForTileEntityFromCoordinate(battleSystem.Player.coordinates);
             battleSystem.Enemy.transform.position =
-                battleSystem.Board.GetPositionForTileEntityFromCoordinate(new Vector2Int(3, 6));
+                battleSystem.Board.GetPositionForTileEntityFromCoordinate(battleSystem.Enemy.coordinates);
 
             yield return battleSystem.CardManager.GenerateStarterDeck();
 

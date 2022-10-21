@@ -28,8 +28,8 @@ namespace Board
         private MeshCollider _meshCollider;
         private List<Face> _faces;
 
-        private bool _isHighlighted;
-        private bool _isAvailable;
+        private bool _isHighlighted = false;
+        private bool _isAvailable = false;
         
         [SerializeField] private Material defaultMaterial;
         [SerializeField] private Material highlightMaterial;
@@ -62,6 +62,12 @@ namespace Board
         public void SetIsHighlighted(bool isHighlighted)
         {
             _isHighlighted = isHighlighted;
+            UpdateMaterial();
+        }
+        
+        public void SetIsAvailable(bool isAvailable)
+        {
+            _isAvailable = isAvailable;
             UpdateMaterial();
         }
         
