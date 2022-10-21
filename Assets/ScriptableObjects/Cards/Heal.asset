@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b5c5fe5ab5146b42a6a42614a3b87ce, type: 3}
   m_Name: Heal
   m_EditorClassIdentifier: 
-  name: Heal
+  cardName: Heal
   energyCost: 3

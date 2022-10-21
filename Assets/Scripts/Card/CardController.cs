@@ -1,5 +1,4 @@
-using System.Threading;
-using Battle;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,22 +7,19 @@ using UnityEngine.UI;
 public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Card card;
-    public TMP_Text name;
+    public TMP_Text cardName;
     public TMP_Text energyCost;
 
-    private BattleSystem battleSystem;
+    public event Action OnCardPress;
 
     public void Start()
     {
-        battleSystem = GameObject.Find("Battle System").GetComponent<BattleSystem>();
-        name.text = card.name;
+        cardName.text = card.cardName;
         energyCost.text = card.energyCost.ToString();
         gameObject.AddComponent(typeof(Button));
         gameObject.GetComponent<Button>().onClick.AddListener(() =>
         {
-            battleSystem.OnUseCard(card);
-            Destroy(gameObject);
-            
+            OnCardPress?.Invoke();
         });
     }
 

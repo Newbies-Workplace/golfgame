@@ -11,11 +11,13 @@ namespace Battle
 
         public override IEnumerator Move(Vector2Int coordinates)
         {
-            BattleSystem.Enemy.transform.position =
-                BattleSystem.Board.GetPositionForTileEntityFromCoordinate(coordinates);
+            if (!battleSystem.Board.CanMoveOnTile(coordinates)) yield break;
             
-            BattleSystem.SetState(new PlayerTurn(BattleSystem));
-            yield break;
+            battleSystem.Enemy.transform.SetParent(battleSystem.Board.GetTileTransform(coordinates));
+            battleSystem.Enemy.transform.position =
+                battleSystem.Board.GetPositionForTileEntityFromCoordinate(coordinates);
+                
+            battleSystem.SetState(new PlayerTurn(battleSystem));
         }
     }
 }

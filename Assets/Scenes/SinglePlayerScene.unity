@@ -724,8 +724,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSize: 7
   hexTileRenderer: {fileID: 4812659467796908003, guid: 4f6c2dd18964c4748b9c753736d48657, type: 3}
-  defaultMaterial: {fileID: 2100000, guid: 2dcf06b2b84c76041866a426cfd80f66, type: 2}
-  highlightMaterial: {fileID: 2100000, guid: 92679fc7483c30f4a9a923acc21c1059, type: 2}
 --- !u!4 &1207553095
 Transform:
   m_ObjectHideFlags: 0
@@ -938,11 +936,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardList: {fileID: 972341649}
   cardPrefabs:
-  - {fileID: 6183583508945990587, guid: 0e2a87f0f21f43247b1ca9437a715ca7, type: 3}
-  - {fileID: 6183583508945990587, guid: 66b1b869f55a85349a3a3beb57babda1, type: 3}
-  - {fileID: 6183583508945990587, guid: 738e4d0ee0cb0954889cef05440af9c8, type: 3}
-  - {fileID: 6183583508945990587, guid: f9a1d12c5d7658e4084c60c50d7cc5d1, type: 3}
-  - {fileID: 6183583508945990587, guid: ccb64d01214193f46aa91d35e4005798, type: 3}
+  - {fileID: 8942024074679899704, guid: 11c27498e88dfd446907c051119ae927, type: 3}
+  - {fileID: 6183583508945990589, guid: 0e2a87f0f21f43247b1ca9437a715ca7, type: 3}
+  - {fileID: 6183583508945990589, guid: 66b1b869f55a85349a3a3beb57babda1, type: 3}
+  - {fileID: 6183583508945990589, guid: 738e4d0ee0cb0954889cef05440af9c8, type: 3}
+  - {fileID: 6183583508945990589, guid: f9a1d12c5d7658e4084c60c50d7cc5d1, type: 3}
   numberOfCards: 6
 --- !u!4 &1644504515
 Transform:

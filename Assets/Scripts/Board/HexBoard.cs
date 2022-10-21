@@ -1,5 +1,4 @@
 using System;
-using Battle;
 using UnityEngine;
 
 namespace Board
@@ -10,21 +9,17 @@ namespace Board
         public HexTileRenderer hexTileRenderer;
 
         public event Action<Vector2Int> OnTilePress;
-
-        [SerializeField] private Material defaultMaterial;
-        [SerializeField] private Material highlightMaterial;
-
+        
         private HexTileRenderer[,] _tiles;
         private Transform _selection;
         private Camera _currentCamera;
-        private Vector2Int _currentHover = -Vector2Int.one;
+        private Vector2Int? _currentHover;
 
         private void Awake()
         {
             LayoutGrid();
         }
 
-        //todo refactor
         private void Update()
         {
             if (!_currentCamera)
@@ -37,35 +32,71 @@ namespace Board
             if (Physics.Raycast(ray, out var info, 100, LayerMask.GetMask("Tile", "Hover")))
             {
                 var hitPosition = LookupTileIndex(info.transform.gameObject.GetComponent<HexTileRenderer>());
-
-                // Initial hover
-                if (_currentHover == -Vector2Int.one)
-                {
-                    _currentHover = hitPosition;
-                    _tiles[hitPosition.x, hitPosition.y].SetMaterial(highlightMaterial);
-                }
-
-                // Hover and change previous
-                if (_currentHover != hitPosition)
-                {
-                    _tiles[_currentHover.x, _currentHover.y].SetMaterial(defaultMaterial);
-                    _currentHover = hitPosition;
-                    _tiles[hitPosition.x, hitPosition.y].SetMaterial(highlightMaterial);
-                }
+                if (hitPosition is null) return;
+                
+                HighlightTile(hitPosition.Value);
                 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    OnTilePress?.Invoke(hitPosition);
+                    OnTilePress?.Invoke(hitPosition.Value);
                 }
             }
             else
             {
-                if (_currentHover != -Vector2Int.one)
+                ClearHighlightedTile();
+            }
+        }
+        
+        public Vector3 GetPositionForTileEntityFromCoordinate(Vector2Int coordinate)
+        {
+            var pos = GetPositionForHexFromCoordinate(coordinate);
+
+            pos.y = 1;
+
+            return pos;
+        }
+
+        private void HighlightTile(Vector2Int hitPosition)
+        {
+            if (_currentHover == hitPosition) return;
+            
+            ClearHighlightedTile();
+            _currentHover = hitPosition;
+            _tiles[hitPosition.x, hitPosition.y].SetIsHighlighted(true);
+        }
+
+        private void ClearHighlightedTile()
+        {
+            if (_currentHover == null) return;
+            
+            _tiles[_currentHover.Value.x, _currentHover.Value.y].SetIsHighlighted(false);
+            _currentHover = null;
+        }
+        
+        private Vector2Int? LookupTileIndex(HexTileRenderer hitInfo)
+        {
+            for (int x = 0; x < gridSize; x++)
+            {
+                for (int y = 0; y < gridSize; y++)
                 {
-                    _tiles[_currentHover.x, _currentHover.y].SetMaterial(defaultMaterial);
-                    _currentHover = -Vector2Int.one;
+                    if (_tiles[x, y] == hitInfo)
+                    {
+                        return new Vector2Int(x, y);
+                    }
                 }
             }
+
+            return null;
+        }
+
+        public Transform GetTileTransform(Vector2Int coordinates)
+        {
+            return _tiles[coordinates.x, coordinates.y].transform;
+        }
+
+        public bool CanMoveOnTile(Vector2Int coordinates)
+        {
+            return _tiles[coordinates.x, coordinates.y].transform.childCount == 0;
         }
 
         private void LayoutGrid()
@@ -86,7 +117,6 @@ namespace Board
                     var tile = Instantiate(hexTileRenderer, GetPositionForHexFromCoordinate(new Vector2Int(x, y)), Quaternion.identity);
                     tile.name = $"Tile {x}, {y}";
                     tile.transform.parent = transform;
-                    tile.GetComponent<MeshRenderer>().material = defaultMaterial;
                     _tiles[x, y] = tile;
                 }
             }
@@ -113,31 +143,6 @@ namespace Board
             var yPosition = -row * verticalDistance;
 
             return new Vector3(xPosition, 0, yPosition);
-        }
-
-        public Vector3 GetPositionForTileEntityFromCoordinate(Vector2Int coordinate)
-        {
-            var pos = GetPositionForHexFromCoordinate(coordinate);
-
-            pos.y = 1;
-
-            return pos;
-        }
-        
-        private Vector2Int LookupTileIndex(HexTileRenderer hitInfo)
-        {
-            for (int x = 0; x < gridSize; x++)
-            {
-                for (int y = 0; y < gridSize; y++)
-                {
-                    if (_tiles[x, y] == hitInfo)
-                    {
-                        return new Vector2Int(x, y);
-                    }
-                }
-            }
-
-            return -Vector2Int.one;
         }
     }
 }
