@@ -131,7 +131,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -9.046791, y: 0, z: -59.215332, w: 0}
+  m_margin: {x: -9.046791, y: 0, z: -65.509186, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -282,8 +282,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6183583508945990586}
   - component: {fileID: 6183583508945990591}
-  - component: {fileID: 6183583508945990588}
   - component: {fileID: 6183583508945990589}
+  - component: {fileID: 5055058919126246739}
   m_Layer: 5
   m_Name: HealCardPrefab
   m_TagString: Untagged
@@ -321,33 +321,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6183583508945990587}
   m_CullTransparentMesh: 1
---- !u!114 &6183583508945990588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6183583508945990587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 4eb8a08a5ff8eea4299f196e6b417102, type: 3}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
 --- !u!114 &6183583508945990589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,3 +336,25 @@ MonoBehaviour:
   card: {fileID: 11400000, guid: 8965b16f03a32d44ba581f5c063e9354, type: 2}
   cardName: {fileID: 6183583508407046968}
   energyCost: {fileID: 6183583508487480094}
+--- !u!114 &5055058919126246739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6183583508945990587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3286163911610860551, guid: 50ff523a61e49df45b112259d0a2c888, type: 3}
+  m_PreserveAspect: 0

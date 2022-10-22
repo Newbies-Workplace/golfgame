@@ -583,7 +583,7 @@ MonoBehaviour:
     m_Top: 100
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 0
+  m_Spacing: 5
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -952,11 +952,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardList: {fileID: 972341649}
   cardPrefabs:
-  - {fileID: 8942024074679899704, guid: 11c27498e88dfd446907c051119ae927, type: 3}
+  - {fileID: 6183583508945990589, guid: f9a1d12c5d7658e4084c60c50d7cc5d1, type: 3}
   - {fileID: 6183583508945990589, guid: 0e2a87f0f21f43247b1ca9437a715ca7, type: 3}
   - {fileID: 6183583508945990589, guid: 66b1b869f55a85349a3a3beb57babda1, type: 3}
   - {fileID: 6183583508945990589, guid: 738e4d0ee0cb0954889cef05440af9c8, type: 3}
-  - {fileID: 6183583508945990589, guid: f9a1d12c5d7658e4084c60c50d7cc5d1, type: 3}
   numberOfCards: 6
 --- !u!4 &1644504515
 Transform:
