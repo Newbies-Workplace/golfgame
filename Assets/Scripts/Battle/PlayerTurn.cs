@@ -9,14 +9,24 @@ namespace Battle
         {
         }
 
+        public override IEnumerator Start()
+        {
+            battleSystem.Board.HighlightAvailableMoves(battleSystem.Player);
+            
+            return base.Start();
+        }
+
         public override IEnumerator Move(Vector2Int coordinates)
         {
-            if (!battleSystem.Board.CanMoveOnTile(coordinates)) yield break;
-            
+            if (!battleSystem.Board.CanMoveToTile(battleSystem.Player, coordinates)) yield break;
+
+            battleSystem.Player.coordinates = coordinates;
             battleSystem.Player.transform.SetParent(battleSystem.Board.GetTileTransform(coordinates));
             battleSystem.Player.transform.position =
                 battleSystem.Board.GetPositionForTileEntityFromCoordinate(coordinates);
-                
+            
+            battleSystem.Board.ClearAvailableMovesHighlight();
+
             battleSystem.SetState(new EnemyTurn(battleSystem));
         }
 
