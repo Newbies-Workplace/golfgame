@@ -18,7 +18,7 @@ namespace Battle
 
         public override IEnumerator Move(Vector2Int coordinates)
         {
-            if (!battleSystem.Board.CanMoveOnTile(coordinates)) yield break;
+            if (!battleSystem.Board.CanMoveToTile(battleSystem.Player, coordinates)) yield break;
 
             battleSystem.Player.coordinates = coordinates;
             battleSystem.Player.transform.SetParent(battleSystem.Board.GetTileTransform(coordinates));

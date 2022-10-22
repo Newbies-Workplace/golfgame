@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using UnityEngine;
 
 namespace Battle
 {
@@ -11,8 +10,11 @@ namespace Battle
 
         public override IEnumerator Start()
         {
+            battleSystem.Player.transform.SetParent(battleSystem.Board.GetTileTransform(battleSystem.Player.coordinates));
             battleSystem.Player.transform.position =
                 battleSystem.Board.GetPositionForTileEntityFromCoordinate(battleSystem.Player.coordinates);
+            
+            battleSystem.Enemy.transform.SetParent(battleSystem.Board.GetTileTransform(battleSystem.Enemy.coordinates));
             battleSystem.Enemy.transform.position =
                 battleSystem.Board.GetPositionForTileEntityFromCoordinate(battleSystem.Enemy.coordinates);
 

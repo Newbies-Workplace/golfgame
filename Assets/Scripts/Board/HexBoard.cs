@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Board
@@ -95,26 +94,18 @@ namespace Board
             return _tiles[coordinates.x, coordinates.y].transform;
         }
 
-        public bool CanMoveOnTile(Vector2Int coordinates)
+        public bool CanMoveToTile(Fighter fighter, Vector2Int to)
         {
-            try //todo check instead of try
-            {
-                return _tiles[coordinates.x, coordinates.y].transform.childCount == 0;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return false;
-            }
+            return HexAlgorithms.CanMoveToHex(fighter.coordinates, to, fighter.range, pos => !CanStepOnTile(pos));
         }
         
         //https://www.redblobgames.com/grids/hexagons/#range
         public void HighlightAvailableMoves(Fighter player)
         {
-            var tilesWithinRange = HexAlgorithms.GetReachableHexes(
+            var tilesWithinRange = HexAlgorithms.GetMovableHexes(
                 player.coordinates,
                 player.range,
-                pos => !CanMoveOnTile(pos)
+                pos => !CanStepOnTile(pos)
             );
 
             foreach (var coordinate in tilesWithinRange)
@@ -138,6 +129,18 @@ namespace Board
                 {
                     tile.SetIsAvailable(false);
                 }
+            }
+        }
+
+        private bool CanStepOnTile(Vector2Int pos)
+        {
+            try //todo check instead of try
+            {
+                return _tiles[pos.x, pos.y].transform.childCount == 0;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
         

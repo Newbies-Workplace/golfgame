@@ -24,9 +24,9 @@ namespace Board
             return hex + AxialDirection(direction);
         }
 
-        public static Vector2Int[] GetReachableHexes(Vector2Int start, int range, Func<Vector2Int, bool> isBlockChecker)
+        public static Vector2Int[] GetMovableHexes(Vector2Int start, int range, Func<Vector2Int, bool> isBlockChecker)
         {
-            var visited = new HashSet<Vector2Int> { start };
+            var visited = new HashSet<Vector2Int> { };
             var fringes = new List<List<Vector2Int>> { new() {start} };
 
             for (var k = 1; k <= range; k++)
@@ -48,6 +48,15 @@ namespace Board
             }
             
             return visited.ToArray();
+        }
+
+        public static bool CanMoveToHex(
+            Vector2Int from, Vector2Int to,
+            int range, Func<Vector2Int, bool> isBlockChecker)
+        {
+            var movableHexes = GetMovableHexes(from, range, isBlockChecker);
+
+            return movableHexes.Contains(to);
         }
     }
 }
