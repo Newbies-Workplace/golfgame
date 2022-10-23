@@ -12,8 +12,11 @@ namespace Battle
         public override IEnumerator Start()
         {
             battleSystem.Board.HighlightAvailableMoves(battleSystem.Player);
+
+            if (battleSystem.CardManager.cardList.childCount < battleSystem.CardManager.numberOfCards)
+                yield return battleSystem.CardManager.DrawCard();
             
-            return base.Start();
+            yield return base.Start();
         }
 
         public override IEnumerator Move(Vector2Int coordinates)
