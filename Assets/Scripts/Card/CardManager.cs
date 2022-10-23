@@ -21,7 +21,7 @@ public class CardManager : MonoBehaviour
             cardController.OnCardPress += () =>
             {
                 OnCardPress?.Invoke(cardController.card);
-                Destroy(cardController.gameObject);
+                //Destroy(cardController.gameObject);
             };
             
             yield return new WaitForSeconds(.1f);

@@ -28,7 +28,8 @@ namespace Battle
             };
             cardManager.OnCardPress += card =>
             {
-                StartCoroutine(State.UseCard(card));
+                if (State.GetType() == typeof(PlayerTurn))
+                    StartCoroutine(State.UseCard(card));
             };
         }
     }
