@@ -35,7 +35,8 @@ namespace Battle
 
         public override IEnumerator UseCard(Card card)
         {
-            Debug.Log($"PlayerTurn: Use Card: {card.cardName}");
+            Debug.Log($"PlayerTurn. Use Card: {card.cardName}");
+            battleSystem.CardManager.DestroyCard(card);
             return base.UseCard(card);
         }
     }

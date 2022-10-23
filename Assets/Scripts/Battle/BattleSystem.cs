@@ -9,7 +9,7 @@ namespace Battle
         [SerializeField] private Fighter enemy;
         [SerializeField] private HexBoard hexBoard;
         [SerializeField] private CardManager cardManager;
-        
+
         public Fighter Player => player;
         public Fighter Enemy => enemy;
         public HexBoard Board => hexBoard;
@@ -28,8 +28,7 @@ namespace Battle
             };
             cardManager.OnCardPress += card =>
             {
-                if (State.GetType() == typeof(PlayerTurn))
-                    StartCoroutine(State.UseCard(card));
+                StartCoroutine(State.UseCard(card));
             };
         }
     }
