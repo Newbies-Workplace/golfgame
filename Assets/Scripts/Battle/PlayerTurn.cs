@@ -15,9 +15,9 @@ namespace Battle
 
             if (battleSystem.GetPreviousState() is not Begin)
             {
-                var newEnergyCount = battleSystem.Player.energy += 1;
+                var newEnergy = battleSystem.Player.energy += 1;
                 battleSystem.UiManager.PlayerEnergy.SetText(
-                    $"Energy: {newEnergyCount}"
+                    $"Energy: {newEnergy}"
                 );
             }
 
@@ -47,9 +47,9 @@ namespace Battle
             {
                 Debug.Log($"PlayerTurn. Use Card: {card.cardName}");
 
-                var newEnergyCount = battleSystem.Player.energy -= card.energyCost;
+                var newEnergy = battleSystem.Player.energy -= card.energyCost;
                 battleSystem.UiManager.PlayerEnergy.SetText(
-                    $"Energy: {newEnergyCount}"
+                    $"Energy: {newEnergy}"
                 );
                 battleSystem.CardManager.DestroyCard(card);
             }
