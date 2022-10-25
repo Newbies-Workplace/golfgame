@@ -14,7 +14,9 @@ namespace Battle
             battleSystem.Board.HighlightAvailableMoves(battleSystem.Player);
 
             if (battleSystem.GetPreviousState() is not Begin)
-                battleSystem.PlayerEnergy.SetText($"Energy: {battleSystem.Player.energy += 1}");
+                battleSystem.PlayerEnergy.SetText(
+                    $"Energy: {battleSystem.Player.energy += 1}"
+                );
 
 
             if (battleSystem.CardManager.cardList.childCount < battleSystem.CardManager.numberOfCards)
@@ -42,8 +44,10 @@ namespace Battle
             if (battleSystem.Player.energy - card.energyCost >= 0)
             {
                 Debug.Log($"PlayerTurn. Use Card: {card.cardName}");
-                
-                battleSystem.PlayerEnergy.SetText($"Energy: {battleSystem.Player.energy -= card.energyCost}");
+
+                battleSystem.PlayerEnergy.SetText(
+                    $"Energy: {battleSystem.Player.energy -= card.energyCost}"
+                );
                 battleSystem.CardManager.DestroyCard(card);
             }
             else
