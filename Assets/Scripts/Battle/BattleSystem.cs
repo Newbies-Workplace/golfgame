@@ -10,13 +10,13 @@ namespace Battle
         [SerializeField] private Fighter enemy;
         [SerializeField] private HexBoard hexBoard;
         [SerializeField] private CardManager cardManager;
-        [SerializeField] private TMP_Text playerEnergyText;
+        [SerializeField] private UiManager uiManager;
 
         public Fighter Player => player;
         public Fighter Enemy => enemy;
         public HexBoard Board => hexBoard;
         public CardManager CardManager => cardManager;
-        public TMP_Text PlayerEnergy => playerEnergyText;
+        public UiManager UiManager => uiManager;
        
         private void Start()
         {
