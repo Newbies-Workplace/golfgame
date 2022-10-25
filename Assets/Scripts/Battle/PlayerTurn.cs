@@ -13,9 +13,13 @@ namespace Battle
         {
             battleSystem.Board.HighlightAvailableMoves(battleSystem.Player);
 
+            if (battleSystem.GetPreviousState() is not Begin)
+                battleSystem.PlayerEnergy.SetText($"Energy: {battleSystem.Player.energy += 1}");
+
+
             if (battleSystem.CardManager.cardList.childCount < battleSystem.CardManager.numberOfCards)
                 yield return battleSystem.CardManager.DrawCard();
-            
+
             yield return base.Start();
         }
 
@@ -27,7 +31,7 @@ namespace Battle
             battleSystem.Player.transform.SetParent(battleSystem.Board.GetTileTransform(coordinates));
             battleSystem.Player.transform.position =
                 battleSystem.Board.GetPositionForTileEntityFromCoordinate(coordinates);
-            
+
             battleSystem.Board.ClearAvailableMovesHighlight();
 
             battleSystem.SetState(new EnemyTurn(battleSystem));
@@ -35,8 +39,18 @@ namespace Battle
 
         public override IEnumerator UseCard(Card card)
         {
-            Debug.Log($"PlayerTurn. Use Card: {card.cardName}");
-            battleSystem.CardManager.DestroyCard(card);
+            if (battleSystem.Player.energy - card.energyCost >= 0)
+            {
+                Debug.Log($"PlayerTurn. Use Card: {card.cardName}");
+                
+                battleSystem.PlayerEnergy.SetText($"Energy: {battleSystem.Player.energy -= card.energyCost}");
+                battleSystem.CardManager.DestroyCard(card);
+            }
+            else
+            {
+                Debug.Log("You can't use the card");
+            }
+
             return base.UseCard(card);
         }
     }

@@ -10,10 +10,13 @@ namespace Battle
 
         public override IEnumerator Start()
         {
-            battleSystem.Player.transform.SetParent(battleSystem.Board.GetTileTransform(battleSystem.Player.coordinates));
+            battleSystem.Player.transform.SetParent(
+                battleSystem.Board.GetTileTransform(battleSystem.Player.coordinates));
             battleSystem.Player.transform.position =
                 battleSystem.Board.GetPositionForTileEntityFromCoordinate(battleSystem.Player.coordinates);
-            
+
+            battleSystem.PlayerEnergy.SetText($"Energy: {battleSystem.Player.energy = 5}");
+
             battleSystem.Enemy.transform.SetParent(battleSystem.Board.GetTileTransform(battleSystem.Enemy.coordinates));
             battleSystem.Enemy.transform.position =
                 battleSystem.Board.GetPositionForTileEntityFromCoordinate(battleSystem.Enemy.coordinates);
