@@ -10,8 +10,7 @@ namespace Battle
 
         public override IEnumerator Start()
         {
-            battleSystem.Player.transform.SetParent(
-                battleSystem.Board.GetTileTransform(battleSystem.Player.coordinates));
+            battleSystem.Player.transform.SetParent(battleSystem.Board.GetTileTransform(battleSystem.Player.coordinates));
             battleSystem.Player.transform.position =
                 battleSystem.Board.GetPositionForTileEntityFromCoordinate(battleSystem.Player.coordinates);
 
